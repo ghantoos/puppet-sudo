@@ -14,12 +14,12 @@ class sudo::base {
     #
     # Backward compatibility for version less than 1.7.2
     # 
-    common::concatfilepart { "000-sudoers.init":
-      ensure  => present,
-      manage  => true,
-      file    => "/etc/sudoers",
-      content => template("sudo/sudoers.erb"),
-    }
+    #common::concatfilepart { "000-sudoers.init":
+    #  ensure  => present,
+    #  manage  => true,
+    #  file    => "/etc/sudoers",
+    #  content => template("sudo/sudoers.erb"),
+    #}
    
   } else {
     #
@@ -33,9 +33,7 @@ class sudo::base {
       purge   => true,
       recurse => true,
     }
-
-    File ["/etc/sudoers"] { content => template("sudo/sudoers.erb"), }
-
+    #File ["/etc/sudoers"] { content => template("sudo/sudoers.erb"), }
   }
 
 }

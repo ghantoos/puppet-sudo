@@ -1,14 +1,24 @@
-# file managed by puppet
-Defaults    env_keep=SSH_AUTH_SOCK
-Defaults    !authenticate
-Defaults    env_reset
+# THIS FILE WAS GENERATED AUTOMATICALLY USING PUPPET
+# DO NOT MODIFY IT BY HAND
+
+Defaults        env_reset
+
+# Host alias specification
+
+# User alias specification
+
+# Cmnd alias specification
+
+# User privilege specification
+root    ALL=(ALL) ALL
+
 <% if has_variable?("sudo_mailto") -%>
 Defaults    mailto=<%= sudo_mailto %>
 <% end -%>
-Defaults    always_set_home
-root  ALL=(ALL) ALL
 
-# This directive only works with version >= 1.7.2!
-#includedir /etc/sudoers.d
-##
+# Allow members of group sudo to execute any command
+# (Note that later entries override this, so you might need to move
+# it further down)
+%sudo ALL=(ALL) ALL
 #
+#includedir /etc/sudoers.d

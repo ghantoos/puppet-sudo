@@ -9,17 +9,11 @@ define sudo::directive (
 
   if versioncmp($::sudoversion,'1.7.2') < 0 {
 
-    common::concatfilepart {$dname:
-      ensure => $ensure,
-      manage => true,
-      file => "/etc/sudoers",
-      content => $content ? {
+    common::append_if_no_such_line { $dname:
+      file  => "/etc/sudoers",
+      line  => $content ? {
         ""      => undef,
         default => $content,
-      },
-      source => $source ? {
-        ""      => undef,
-        default => $source,
       },
       require => Package["sudo"],
     }
